@@ -1,0 +1,6 @@
+streamlit
+pandas
+plotly
+openpyxl  # Necessário para ler arquivos .xlsx com Pandas
+xlrd # Pode ser necessário para ler arquivos .xls mais antigos, descomente se precisar
+numpy
