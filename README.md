@@ -32,13 +32,20 @@ Esta ferramenta permite que você faça o upload do arquivo CSV da sua fatura de
 
 ## 📁 Estrutura do Projeto
 
-```
-seu-repositorio/
+analise-fatura-itau/  # Root directory of the project
 │
-├── app.py             # O código principal da aplicação Streamlit
-├── requirements.txt   # Lista de dependências Python
-└── README.md          # Este arquivo
-```
+├── folders/
+│   ├── app.py                     # Script principal da aplicação Streamlit (Página "Visão Geral")
+│   ├── utils.py                   # Funções utilitárias compartilhadas
+│   └── pages/
+│       └── parcelamentos_analysis.py # Script para a página "Análise de Parcelamentos"
+│
+├── regras_categorizacao.xlsx      # Arquivo Excel com regras para categorização automática
+├── requirements.txt               # Lista de dependências Python
+├── project_summary.md             # Diagnóstico detalhado das capacidades do repositório
+├── README.md                      # Este arquivo
+├── LICENSE                        # Informações de licença
+└── .gitignore                     # Arquivos ignorados pelo Git
 
 ## ⚙️ Como Começar
 

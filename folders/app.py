@@ -9,29 +9,12 @@ import numpy as np
 import re
 import io
 import os
+from .utils import limpar_valor
 
 # --- Configuração da Página Streamlit ---
 st.set_page_config(page_title="Análise de Fatura Itaú", page_icon="📊", layout="wide")
 
 # --- Funções Auxiliares ---
-def limpar_valor(valor):
-    """Cleans currency strings and converts to float."""
-    if isinstance(valor, (int, float)):
-        return float(valor)
-    if isinstance(valor) is str:
-        # Remove currency symbols, spaces, and replace comma decimal separator
-        valor_limpo = re.sub(r'[R$\s]', '', valor).replace(',', '.')
-        try:
-            return float(valor_limpo)
-        except ValueError:
-            # Handle cases where comma might be used as thousands separator
-            valor_limpo_alt = valor.replace('.', '').replace(',', '.')
-            try:
-                return float(valor_limpo_alt)
-            except ValueError:
-                return np.nan # Return NaN if conversion fails
-    return np.nan # Return NaN for other types
-
 @st.cache_data
 def load_rules_from_excel(file_path='regras_categorizacao.xlsx'):
     """Loads categorization rules from an Excel file."""

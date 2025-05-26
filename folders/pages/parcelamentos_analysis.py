@@ -5,9 +5,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from datetime import datetime, date, timedelta
-import numpy as np
 import re
 import calendar # Import calendar for month names
+from ..utils import limpar_valor # Use .. for relative import
 
 # --- Configuração da Página Streamlit ---
 st.set_page_config(page_title="Análise de Parcelamentos", page_icon="💳", layout="wide")
@@ -15,24 +15,6 @@ st.set_page_config(page_title="Análise de Parcelamentos", page_icon="💳", lay
 # --- Funções Auxiliares (Copied from app.py for self-containment) ---
 # Note: In a real multi-page app, you might put shared functions in a separate utility file
 # and import them. For this example, copying for simplicity.
-def limpar_valor(valor):
-    """Cleans currency strings and converts to float."""
-    if isinstance(valor, (int, float)):
-        return float(valor)
-    if isinstance(valor) is str:
-        # Remove currency symbols, spaces, and replace comma decimal separator
-        valor_limpo = re.sub(r'[R$\s]', '', valor).replace(',', '.')
-        try:
-            return float(valor_limpo)
-        except ValueError:
-            # Handle cases where comma might be used as thousands separator
-            valor_limpo_alt = valor.replace('.', '').replace(',', '.')
-            try:
-                return float(valor_limpo_alt)
-            except ValueError:
-                return np.nan # Return NaN if conversion fails
-    return np.nan # Return NaN for other types
-
 # We don't need load_rules_from_excel or suggest_categories_v2 here
 # as categorization is done on the main page.
 
